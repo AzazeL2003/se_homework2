@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <style>
+      ion-icon {
+          font-size: 32px;
+          position: fixed;
+          right: 0;
+          bottom: 0;  
+      }
+      body
+      {
+        font-family: 'Poppins', sans-serif;
+        background-color: #0d0f3c;
+      }
+
+  </style>
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  <script type="text/javascript" src="https://cdn.staticfile.net/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var option;
+
+    // This example requires ECharts v5.4.0 or later
+myChart.showLoading();
+$.get("./USA.json", function (usaJson) {
+  echarts.registerMap('USA', usaJson);
+  function randomPieSeries(center, radius) {
+    const data = ['A', 'B', 'C', 'D'].map((t) => {
+      return {
+        value: Math.round(Math.random() * 100),
+        name: 'Category ' + t
+      };
+    });
+    return {
+      type: 'pie',
+      coordinateSystem: 'geo',
+      tooltip: {
+        formatter: '{b}: {c} ({d}%)'
+      },
+      label: {
+        show: false
+      },
+      labelLine: {
+        show: false
+      },
+      animationDuration: 0,
+      radius,
+      center,
+      data
+    };
+  }
+  option = {
+    geo: {
+      map: 'USA',
+      roam: true,
+      itemStyle: {
+        areaColor: '#e7e8ea'
+      }
+    },
+    tooltip: {},
+    legend: {}
+  };
+  myChart.hideLoading();
+  myChart.setOption(option);
+});
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+  <a href="admin.html">
+        <div class="icon"><ion-icon name="arrow-undo-outline"></ion-icon></div>
+      </a>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Menu</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<style>
+:root
+{
+    --clr: #11082a;
+}
+</style>
+<body>
+  <div class="menuToggle"></div>
+  <div class="sidebar">
+    <ul>
+      <li class="logo" style="--bg: #333;">
+        <a href="#">
+          <div class="icon"><ion-icon name="reorder-four-outline"></ion-icon></div>
+          <div class="text">Website Logo</div>
+        </a>
+      </li>
+      <div class="menu-list">
+        <li style="--bg:#f44336;" data-content-id = "home">
+          <a href="#">
+            <div class="icon"><ion-icon name="home-outline"></ion-icon></div>
+            <div class="text">Home</div>
+          </a>
+        </li>
+
+        <li style="--bg:#ffa117;" data-content-id = "profile">
+          <a href="#">
+            <div class="icon"><ion-icon name="person-outline"></ion-icon></div>
+            <div class="text">Profile</div>
+          </a>
+        </li>
+
+        <li style="--bg:#0fc70f;" data-content-id = "inbox">
+          <a href="#">
+            <div class="icon"><ion-icon name="reader-outline"></ion-icon></div>
+            <div class="text">Inbox</div>
+          </a>
+        </li>
+
+        <li style="--bg:#2196f3;" data-content-id = "analytics">
+          <a href="#">
+            <div class="icon"><ion-icon name="bar-chart-outline"></ion-icon></div>
+            <div class="text">Analytics</div>
+          </a>
+        </li>
+
+      </div>
+      <div class="bottom">
+
+        <li style="--bg:#333;" data-content-id="logout">
+          <a href="./index.php">
+            <div class="icon"><ion-icon name="log-out-outline"></ion-icon></div>
+            <div class="text">Logout</div>
+          </a>
+        </li>
+
+      </div>
+    </ul>
+  </div>
+  <div class="content-container">
+    
+  </div>
+  <template id="home-content-template">
+    <h2>Welcome to Home Page</h2>
+    <p>Lorem ipsum dolor sit amet...</p>
+  </template>
+
+  <template id="profile-content-template">
+    <h2>Your Profile</h2>
+    <p>Some profile information goes here...</p>
+  </template>
+  
+  <template id="inbox-content-template">
+    <h2>Your Profile</h2>
+    <p>Some profile information goes here...</p>
+  </template>
+  
+  <template id="analytics-content-template">
+    <h2>Your Profile</h2>
+    <p>Some profile information goes here...</p>
+  </template>
+  
+  <template id="order-content-template">
+    <h2>Your Profile</h2>
+    <p>Some profile information goes here...</p>
+  </template>
+  
+  <template id="settings-content-template">
+    <h2>Your Profile</h2>
+    <p>Some profile information goes here...</p>
+  </template>
+
+  <template id="logout-content-template">
+    <h2>Your Profile</h2>
+    <p>Some profile information goes here...</p>
+  </template>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    const menuToggle = document.querySelector('.menuToggle'),
+          sidebar = document.querySelector('.sidebar'),
+          Menulist = document.querySelectorAll('.menu-list li')
+    menuToggle.onclick = function(){
+      menuToggle.classList.toggle('active')
+      sidebar.classList.toggle('active')
+    }
+    
+    function activeLink(event) {
+     Menulist.forEach(item => item.classList.remove('active'));
+     this.classList.add('active');
+
+     const selectedMenuItem = event.target.closest('li');
+     const selectedContentId = selectedMenuItem.getAttribute('data-content-id'); // 假设菜单项有一个"data-content-id"属性指明其对应的内容ID
+
+     // 使用模板ID或模板字符串来获取相应内容
+     const contentTemplate = document.getElementById(selectedContentId + '-content-template');
+
+     // 更新内容区域
+     const contentContainer = document.querySelector('.content-container');
+     contentContainer.innerHTML = contentTemplate ? contentTemplate.innerHTML : contentHtml; // 如果使用模板元素，取innerHTML；如果使用字符串模板，直接使用字符串
+   }
+
+    Menulist.forEach((item) =>
+      item.addEventListener('click', activeLink)
+    )
+  </script>
+</body>
+</html>

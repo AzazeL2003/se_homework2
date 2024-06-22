@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 使div填满垂直高度 */
+        }
+        
+        .form-row {
+            display: flex;
+        }
+        
+        .form-col {
+            flex: 1; /* 让两列等宽 */
+            margin: 10px; /* 输入框之间的间距 */
+        }
+        </style>
+</head>
+
+<body>
+    <div class="center">
+        <form action="insert.php" method="post">
+            <div class="form-row">
+                <div class="form-col">
+                    <input id="type" name="type" type="text" placeholder="水质类别"><br>
+                    <input id="temp" name="temp" type="number" placeholder="水温"><br>
+                    <input id="ph" name="ph" type="number" placeholder="PH"><br>
+                    <input id="dissolvedO2" name="dissolvedO2" type="number" placeholder="溶氧量"><br>
+                    <input id="cond" name="cond" type="number" placeholder="电导率"><br>
+                    <input id="turb" name="turb" type="number" placeholder="浊度"><br>
+                </div>
+                <div class="form-col">
+                    <input id="mnO4" name="mnO4" type="number" placeholder="高锰酸盐指数"><br>
+                    <input id="nh" name="nh" type="number" placeholder="氨氮"><br>
+                    <input id="pvalue" name="pvalue" type="number" placeholder="总磷"><br>
+                    <input id="nvalue" name="nvalue" type="number" placeholder="总氮"><br>
+                    <input id="situ" name="situ" type="text" placeholder="站点情况"><br>
+                    <input id="insert" name="insert" type="submit" value="insert"><br>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>
